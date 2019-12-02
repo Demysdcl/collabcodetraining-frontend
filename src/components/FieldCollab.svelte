@@ -12,9 +12,9 @@
   export let minlength = ''
   export let maxlength = ''
   export let pattern = '.*'
+  export let messageError = ''
+  export let invalid = false
   export let onInput
-  let invalid = false
-  let messageError = ''
 
   let defaultMessageError = []
   defaultMessageError['required'] = 'Campo obrigatório'
@@ -90,10 +90,11 @@
     {minlength}
     {maxlength}
     {pattern}
+    update={onInput}
     onInvalid={validation}
-    onInput={event => {
+    onInput={({ target: { name, value } }) => {
       removeMessageError()
-      onInput(event)
+      onInput(name, value)
     }} />
 
   <ErrorCollab content={messageError} />

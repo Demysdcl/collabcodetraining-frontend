@@ -4,10 +4,30 @@ const save = async user => {
   try {
     const res = await api.post('/users', user)
 
-    return res.data
+    return res
   } catch (error) {
     return error
   }
 }
 
-export default { save }
+const login = async user => {
+  try {
+    const res = await api.post('/auth/login', user)
+
+    return res
+  } catch (error) {
+    return error
+  }
+}
+
+const validate = async () => {
+  try {
+    const res = await api.post('/auth/refresh')
+
+    return res
+  } catch (error) {
+    return error
+  }
+}
+
+export default { save, login, validate }
